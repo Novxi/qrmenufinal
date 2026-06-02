@@ -267,7 +267,8 @@ export const menuData = {
               "2 Kişilik",
               "Paylaşımlık"
             ],
-            "chefRec": true
+            "chefRec": true,
+            "favorite": true
           },
           {
             "id": "b2",
@@ -279,7 +280,8 @@ export const menuData = {
               "2 Kişilik",
               "Paylaşımlık"
             ],
-            "chefRec": true
+            "chefRec": true,
+            "favorite": true
           },
           {
             "id": "b3",
@@ -313,7 +315,8 @@ export const menuData = {
               "Karadeniz",
               "Peynir"
             ],
-            "chefRec": true
+            "chefRec": true,
+            "favorite": true
           },
           {
             "id": "b6",

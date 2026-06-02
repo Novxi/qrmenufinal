@@ -5,7 +5,7 @@ import { resolveImageUrl } from '../lib/api';
 
 const getMotifClass = (motif) => (motif ? `category-motif-${motif}` : '');
 
-export default function MenuCategory({ category, dietaryInfo, chefRecText }) {
+export default function MenuCategory({ category, dietaryInfo, chefRecText, scope = 'restaurant' }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const raw = category?.image?.trim() || '';
@@ -32,6 +32,8 @@ export default function MenuCategory({ category, dietaryInfo, chefRecText }) {
           dietaryInfo={dietaryInfo}
           chefRecText={chefRecText}
           index={index}
+          scope={scope}
+          categoryName={category?.name}
         />
       ));
     }
@@ -49,6 +51,8 @@ export default function MenuCategory({ category, dietaryInfo, chefRecText }) {
                 dietaryInfo={dietaryInfo}
                 chefRecText={chefRecText}
                 index={index}
+                scope={scope}
+                categoryName={groupName}
               />
             ))
           ) : (

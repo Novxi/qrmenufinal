@@ -22,6 +22,9 @@ import KirKahvesiMenu from "./components/KirKahvesiMenu";
 import AdminMenuEditor from "./AdminMenuEditor";
 import ReservationPage from "./components/ReservationPage";
 import ReservationAdminPage from "./components/ReservationAdminPage";
+import ReviewsPage from "./components/ReviewsPage";
+import ReviewsAdminPage from "./components/admin/ReviewsAdminPage";
+import { withFavoritesCategory } from "./lib/favorites";
 
 /**
  * ORİJİNAL RESTORAN MENÜSÜ
@@ -47,7 +50,11 @@ const RestaurantMenuPage = () => {
 
   // Restoran scope artık ayrı bir menü olduğu için kategori filtrelemesine gerek yok.
   // Kullanıcı admin'den istediği kategoriyi tutar / siler.
-  const filteredCategories = currentMenu.categories || [];
+  // Admin'in favori işaretlediği ürünlerden en başa sanal "Favoriler" grubu eklenir.
+  const filteredCategories = withFavoritesCategory(
+    currentMenu.categories || [],
+    lang
+  );
 
   useEffect(() => {
     const handleScroll = () => {
@@ -132,6 +139,7 @@ const RestaurantMenuPage = () => {
             dietaryInfo={currentDietaryInfo}
             chefRecText={currentTranslations.chefRec}
             lang={lang}
+            scope="restaurant"
           />
         ))}
       </main>
@@ -153,8 +161,10 @@ const RestaurantMenuPage = () => {
  * /restaurant-menu       -> RestaurantMenuPage (eski restoran menüsü)
  * /kir-kahvesi-menu      -> KirKahvesiMenu
  * /rezervasyon           -> ReservationPage (müşteri rezervasyon formu)
+ * /yorumlar              -> ReviewsPage (müşteri yorum/puan formu + liste)
  * /admin                 -> AdminMenuEditor (menü düzenleme)
  * /admin/reservations    -> ReservationAdminPage (rezervasyon listesi)
+ * /admin/reviews         -> ReviewsAdminPage (yorumlar + favori önerileri)
  */
 function App() {
   return (
@@ -172,11 +182,17 @@ function App() {
         {/* Müşteri rezervasyon formu */}
         <Route path="/rezervasyon" element={<ReservationPage />} />
 
+        {/* Müşteri yorumları */}
+        <Route path="/yorumlar" element={<ReviewsPage />} />
+
         {/* Admin: menü düzenleme */}
         <Route path="/admin" element={<AdminMenuEditor />} />
 
         {/* Admin: rezervasyon listesi */}
         <Route path="/admin/reservations" element={<ReservationAdminPage />} />
+
+        {/* Admin: yorumlar & favori önerileri */}
+        <Route path="/admin/reviews" element={<ReviewsAdminPage />} />
       </Routes>
     </Router>
   );

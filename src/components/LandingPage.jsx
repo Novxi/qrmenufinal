@@ -60,6 +60,14 @@ const LandingPage = () => {
             <span className="button-text">Rezervasyon</span>
             <div className="button-glow"></div>
           </button>
+
+          <button
+            className="menu-button"
+            onClick={() => handleNavigation('/yorumlar')}
+          >
+            <span className="button-text">Yorumlar</span>
+            <div className="button-glow"></div>
+          </button>
         </div>
 
         <p className="footer-text">Okut & Sipariş Et Ve Afiyetle Bitir.</p>

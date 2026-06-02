@@ -56,6 +56,7 @@ const emptyItem = (id) => ({
   image: "",
   badges: [],
   chefRec: false,
+  favorite: false,
 });
 
 const emptyCategory = (id) => ({
@@ -238,7 +239,7 @@ const AdminMenuEditor = () => {
           .split(",")
           .map((b) => b.trim())
           .filter(Boolean);
-      } else if (field === "chefRec") item[field] = !!value;
+      } else if (field === "chefRec" || field === "favorite") item[field] = !!value;
       else item[field] = value;
     });
   };
@@ -1054,6 +1055,14 @@ const ItemCardV2 = ({
                 onChange={(e) => onChange("chefRec", e.target.checked)}
               />
               Şefin Önerisi
+            </label>
+            <label className="menu-item-chef">
+              <input
+                type="checkbox"
+                checked={!!item.favorite}
+                onChange={(e) => onChange("favorite", e.target.checked)}
+              />
+              ⭐ Favori
             </label>
           </div>
           <button

@@ -2,6 +2,7 @@
 import React from "react";
 import MenuCategory from "./MenuCategory";
 import { useMenuData } from "../hooks/useMenuData";
+import { withFavoritesCategory } from "../lib/favorites";
 
 const KirKahvesiMenu = () => {
   // Artık kendi ayrı scope'undan okuyor — restoran menüsünden bağımsız.
@@ -15,8 +16,12 @@ const KirKahvesiMenu = () => {
     );
   }
 
+  const lang = menu?.tr ? "tr" : "en";
   const localized = menu?.tr || menu?.en || { categories: [] };
-  const categories = Array.isArray(localized.categories) ? localized.categories : [];
+  const baseCategories = Array.isArray(localized.categories)
+    ? localized.categories
+    : [];
+  const categories = withFavoritesCategory(baseCategories, lang);
 
   return (
     <div style={{ padding: "2rem", color: "white" }}>
@@ -25,7 +30,7 @@ const KirKahvesiMenu = () => {
       </h1>
 
       {categories.map((cat) => (
-        <MenuCategory key={cat.id ?? cat.name} category={cat} />
+        <MenuCategory key={cat.id ?? cat.name} category={cat} scope="kir_kahvesi" />
       ))}
     </div>
   );

@@ -8,6 +8,7 @@ const ADMIN_TOKEN_KEY = "sisly_admin_authed";
 const NAV = [
   { to: "/admin", icon: "🍽", label: "Menü Yönetimi", end: true },
   { to: "/admin/reservations", icon: "📅", label: "Rezervasyonlar" },
+  { to: "/admin/reviews", icon: "💬", label: "Yorumlar & Favoriler" },
 ];
 
 const AdminLayout = ({
